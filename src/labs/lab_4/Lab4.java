@@ -16,19 +16,11 @@ public class Lab4 {
      */
     public static void main(String[] args) {
         ArrayList<Integer> list = genRandomList();
-        Scanner sc = new Scanner(System.in);
         int orderNumber = 0;
         while (orderNumber != 1) {
-            System.out.println("* * * MENU * * *");
-            System.out.println("1. Exit.");
-            System.out.println("2. Print all numbers.");
-            System.out.println("3. Print maximum value.");
-            System.out.println("4. Print minimum value.");
-            System.out.println("5. Search number.");
-
-
+            printMenu();
             System.out.println("Please enter your option: ");
-            orderNumber = sc.nextInt();
+            orderNumber = new Scanner(System.in).nextInt();
             switch (orderNumber) {
                 case 1:
                     System.out.println("See you!");
@@ -45,23 +37,31 @@ public class Lab4 {
                 case 5:
                     System.out.print("Enter the number which you want to search: ");
                     int searchNumber = new Scanner(System.in).nextInt();
-                    if (isContainNumber(list, searchNumber)) {
+                    if (list.contains(searchNumber)){
                         System.out.println("The number " + searchNumber +" is existing in the arraylist with index ["+ list.indexOf(searchNumber) +"].");
-                    } else {
-                        System.out.println("The number " + searchNumber + " is not existing in the arraylist.");
                     }
+                    else
+                        System.out.println("The number " + searchNumber + " is not existing in the arraylist.");
                     break;
                 default:
-                    System.out.println("Wrong selection, please try again!");
+                    System.out.println("Something wrongs, please try again!");
                     break;
             }
         }
     }
 
+    public static void printMenu() {
+        System.out.println("* * * MENU * * *\n" +
+                "1. Exit.\n" +
+                "2. Print all numbers.\n" +
+                "3. Print maximum value.\n" +
+                "4. Print minimum value.\n" +
+                "5. Search number.");
+    }
+
     public static ArrayList<Integer> genRandomList() {
         System.out.println("Please input the size of array list: ");
-        Scanner sc = new Scanner(System.in);
-        int size = sc.nextInt();
+        int size = new Scanner(System.in).nextInt();
         Random random = new Random();
         ArrayList<Integer> list = new ArrayList<>();
         for (int i = 0; i <= size; i++) {
@@ -89,13 +89,5 @@ public class Lab4 {
             }
         }
         return minNumber;
-    }
-
-    public static boolean isContainNumber(ArrayList<Integer> list, int num) {
-            if (list.contains(num)) {
-                return true;
-            } else {
-                return false;
-            }
     }
 }
